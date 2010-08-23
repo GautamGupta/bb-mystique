@@ -12,7 +12,6 @@ require_once( 'lib/settings.php' );
 mystique_verify_options();
 
 // optional
-//require_once( 'lib/shortcodes.php' );
 //require_once( 'lib/widgets.php' );
 
 //if ( bb_is_admin() ) require_once( 'admin/theme-settings.php' );
