@@ -5,12 +5,12 @@
 <div id="topic-info">
 	<span id="topic_labels"><?php bb_topic_labels(); ?></span>
 	<h2<?php topic_class( 'topictitle' ); ?>><?php topic_title(); ?><?php if ( topic_is_open() ) : ?><span class="new-topic"> &#8212; <a href="<?php echo esc_attr( get_topic_link( 0, $last_page = bb_get_page_number( ( isset( $topic->topic_posts ) ? $topic->topic_posts : 0 ) + $add ) ) . '#postform' ); ?>">reply</a></span><?php endif; ?></h2>
-	
+
 	<ul class="topicmeta">
 		<li><?php printf( '%1$s and %2$s', get_topic_posts_link(), sprintf( _n( '%s voice', '%s voices', bb_get_topic_voices() ), bb_get_topic_voices() ) ); ?></li>
 		<li><?php printf( __( 'Started %1$s ago by %2$s', 'bb-mystique' ), get_topic_start_time(), get_topic_author() ); ?></li>
 <?php if ( 1 < get_topic_posts() ) : ?>
-	<li><?php printf( __( '<a href="%1$s">Latest reply</a> from %2$s', 'bb-mystique' ), esc_attr( get_topic_last_post_link() ), get_topic_last_poster()) ?></li>
+	<li><?php printf( __( '<a href="%1$s">Last reply</a> from %2$s', 'bb-mystique' ), esc_attr( get_topic_last_post_link() ), get_topic_last_poster()) ?></li>
 <?php endif; ?>
 <?php if ( bb_is_user_logged_in() ) : ?>
 	<li<?php echo $class;?> id="favorite-toggle"><?php user_favorites_link(); ?></li>

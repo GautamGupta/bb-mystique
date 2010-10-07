@@ -1,6 +1,6 @@
 <?php bb_get_header(); ?>
 
-<h2 id="userlogin" role="main"><?php !empty( $user_login ) ? _e( 'Log in Failed', 'bb-mystique' ) : _e( 'Log in', 'bb-mystique' ) ; ?></h2>
+<h2 id="userlogin" role="main"><?php !empty( $user_login ) ? _e( 'Log in failed', 'bb-mystique' ) : _e( 'Log in', 'bb-mystique' ) ; ?></h2>
 
 <form method="post" action="<?php bb_uri( 'bb-login.php', null, BB_URI_CONTEXT_FORM_ACTION + BB_URI_CONTEXT_BB_USER_FORMS ); ?>">
 	<fieldset>
@@ -17,7 +17,7 @@
 					<?php if ( $user_email_error ) echo "<em>$user_email_error</em>"; ?>
 				</th>
 				<td>
-					<input name="log" id="user_login" type="text" value="<?php echo $user_login; ?>"<?php bb_tabindex(); ?> />
+					<input name="user_login" id="user_login" type="text" value="<?php echo $user_login; ?>"<?php bb_tabindex(); ?> />
 				</td>
 			</tr>
 			<tr valign="top" class="form-field <?php if ( $user_password_error ) echo 'form-invalid error'; ?>">
@@ -26,10 +26,10 @@
 					<?php if ( $user_password_error ) echo "<em>$user_password_error</em>"; ?>
 				</th>
 				<td>
-					<input name="pwd" id="password" type="password"<?php bb_tabindex(); ?> />
+					<input name="password" id="password" type="password"<?php bb_tabindex(); ?> />
 				</td>
 			</tr>
-		
+
 			<tr valign="top" class="form-field">
 				<th scope="row"><label for="remember"><?php _e( 'Remember me', 'bb-mystique' ); ?></label></th>
 				<td><input name="rememberme" type="checkbox" id="remember" value="1"<?php echo $remember_checked; bb_tabindex(); ?> /></td>
@@ -37,7 +37,7 @@
 			<tr>
 				<th scope="row">&nbsp;</th>
 				<td>
-					<input name="redirect_to" type="hidden" value="<?php echo $redirect_to; ?>" />
+					<input name="re" type="hidden" value="<?php echo $redirect_to; ?>" />
 					<input type="submit" value="<?php echo esc_attr( !empty( $user_login ) ? __( 'Try Again &raquo;', 'bb-mystique' ): __( 'Log in &raquo;', 'bb-mystique' ) ); ?>"<?php bb_tabindex(); ?> />
 					<?php wp_referer_field(); ?>
 				</td>

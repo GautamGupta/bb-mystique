@@ -10,27 +10,27 @@
 		);
 		?>
 		</p>
-		
+
 		<p>
 			<label>
 				<?php _e( 'Username:', 'bb-mystique', 'bb-mystique' ); ?>
-				<input name="log" id="quick_user_login" size="13" maxlength="40" value="" type="text"<?php bb_tabindex(); ?>>
+				<input name="user_login" id="quick_user_login" size="13" maxlength="40" value="" type="text"<?php bb_tabindex(); ?>>
 			</label>
-			
+
 			<label>
 				<?php _e( 'Password:', 'bb-mystique', 'bb-mystique' ); ?>
-				<input name="pwd" id="quick_password" size="13" maxlength="40" type="password"<?php bb_tabindex(); ?>>
+				<input name="password" id="quick_password" size="13" maxlength="40" type="password"<?php bb_tabindex(); ?>>
 			</label>
-			
+
 			<span class="remember">
 				<label>
 					<input name="rememberme" type="checkbox" id="quick_remember" value="1" title="<?php _e( 'Remember me', 'bb-mystique', 'bb-mystique' ); ?>"<?php bb_tabindex( array( 'set_to_value' => 5 ) ); ?><?php echo $remember_checked; ?> />
 				</label>
 			</span>
-			
-			<input name="redirect_to" type="hidden" value="<?php echo $re; ?>" />
+
+			<input name="re" type="hidden" value="<?php echo $re; ?>" />
 			<?php wp_referer_field(); ?>
-			
+
 			<input type="submit" name="Submit" class="submit" value="<?php esc_attr_e( 'Log in &raquo;', 'bb-mystique' ); ?>"<?php bb_tabindex( array( 'val' => 4, 'set_to_value' => 3 ) ); ?> />
 		</p>
 	</form>

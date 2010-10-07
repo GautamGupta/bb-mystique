@@ -8,7 +8,7 @@
 				</div>
 				<!-- /main content -->
 				
-				<?php $jquery = get_mystique_option( 'jquery' ); ?>
+				<?php $jquery = bb_get_mystique_option( 'jquery' ); ?>
 				
 				<!-- footer -->
 				<div id="footer">
@@ -21,7 +21,7 @@
 								<!-- slide (100%) -->
 								<li class="slide slide-1 page-content withSlider">
 									<div class="slide-content">
-										<ul class="blocks widgetcount-2">
+										<ul class="blocks widgetcount-3">
 											<li class="block block-widget_tags" id="instance-tags-1">
 												<div class="block-content clearfix">
 													<h4 class="title"><?php _e( 'Hot Tags', 'bb-mystique' ); ?></h4>
@@ -34,13 +34,10 @@
 													<li class="view"><a href="<?php view_link( $the_view ); ?>"><?php view_name( $the_view ); ?></a></li>
 												<?php endforeach; ?>
 												</ul>
-											</li>
-											<?php /*
+											</li>											
 											<li class="block block-twitter" id="instance-twitterwidget-3"><div class="block-content clearfix"><h4 class="title"><?php _e( 'My Latest Tweets', 'bb-mystique' ); ?></h4>
-												<?php twitter_widget(); ?>
+												<?php bb_mystique_twitter_widget(); ?>
 											</li>
-											      */
-											?>
 										</ul>
 									</div>
 								</li>

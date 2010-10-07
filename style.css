@@ -7,15 +7,16 @@ Author: digitalnature
 Author URI: http://digitalnature.ro
 Ported By: Gautam
 Porter URI: http://gaut.am/
-Tags: light, white, one-column, fixed-width, flexible-width, translation-ready, custom-header
+Tags: light, white, fixed-width, flexible-width, translation-ready, custom-header
 
 	Mystique WordPress theme
 	  http://digitalnature.ro/projects/mystique
-	  
+
 	bb Mystique bbPress theme
 	  http://gaut.am/bbpress/themes/bb-mystique
 
-	Theme designed by digitalnature. See the project page for more info and updates
+	Theme designed by digitalnature and ported by Gautam.
+	See the project page for more info and updates
 
 	Both the design and code are released under GPL.
 	  http://www.opensource.org/licenses/gpl-2.0.php
@@ -675,7 +676,7 @@ ul.slides li.slide.slide-8{display:none;}
 #fancybox-left:hover span{ left:20px}
 #fancybox-right:hover span{ left:auto; right:20px}
 .fancy-bg{ position:absolute; padding:0; margin:0; border:0; width:20px; height:20px; z-index:1001}
-    
+
 
 
 /* page controls */
@@ -820,6 +821,8 @@ table#wp-calendar caption{font-style:italic;text-align:right;}
 
 .clear { clear: both; }
 
+.hidden { display: none; }
+
 #header a.nav-extra.rss {
   background:url("images/nav-icons.png") no-repeat scroll right top transparent;
 }
@@ -934,7 +937,7 @@ input#tagformsub:active {border-color: rgb(0, 100, 0);}
 
 #login-page fieldset,
 #register-page fieldset,
-#profile-page fieldset {
+#profile-page form fieldset {
 	border-top: 3px double #ccc;
 	border-bottom: 1px solid #ccc;
 	border-left: none;
@@ -1030,9 +1033,9 @@ input#tagformsub:active {border-color: rgb(0, 100, 0);}
 
 #login-page fieldset input[type=text],
 #register-page fieldset input[type=text],
-#profile-page fieldset input[type=text],
+#profile-page form fieldset input[type=text],
 #login-page fieldset input[type=password],
-#profile-page fieldset input[type=password] {
+#profile-page form fieldset input[type=password] {
 	width: 280px;
 	border: 1px solid #ccc;
 	padding: 2px;
@@ -1047,7 +1050,7 @@ input#tagformsub:active {border-color: rgb(0, 100, 0);}
 
 #login-page fieldset p,
 #register-page fieldset p,
-#profile-page fieldset p {
+#profile-page form fieldset p {
 	font-size: 11px;
 	margin: 10px 16px;
 }
@@ -1068,10 +1071,6 @@ p.required-message:before {
 .form-invalid input {
 	padding: 1px;
 	border: 1px solid #c00 !important;
-}
-
-.hidden {
-	display: none;
 }
 
 #pass-strength-result {
@@ -1125,6 +1124,9 @@ p.required-message:before {
 .postform label { display: block; }
 
 .postform #topic,
+.postform #author,
+.postform #email,
+.postform #url,
 .postform #tags-input {
 	margin: 5px 0;
 	padding: 5px;
@@ -1226,7 +1228,7 @@ p.required-message:before {
 }
 
 #topic-search-form div div input {
-	width: 280px;
+	width: 250px;
 	border: 1px solid #ccc;
 	padding: 2px;
 	line-height: 14px;
@@ -1375,4 +1377,26 @@ a.rss-link{background:transparent url(images/feed.png) no-repeat scroll 0 0;padd
   margin: 0;
   padding: 0;
   display: inline;
+}
+
+/* Stats */
+
+.stats {
+	float: left;
+	width: 300px;
+}
+
+.stats table {
+	width: 300px;
+}
+
+.stats table td {
+	width: 100px;
+	text-align: center;
+}
+
+.statspop {
+	float: left;
+	margin-left: 40px;
+	max-width: 600px;
 }

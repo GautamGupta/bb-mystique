@@ -12,7 +12,7 @@
 	<ol>
 <?php foreach ( $recent as $bb_post ) : ?>
 		<li<?php alt_class( 'recent' ); ?>>
-			<a class="result" href="<?php post_link(); ?>"><?php echo bb_show_topic_context( $q, get_topic_title( $bb_post->topic_id ) ); ?></a>
+			<a class="result" href="<?php post_link(); ?>"><?php echo function_exists( 'bb_show_topic_context' ) ? bb_show_topic_context( $q, get_topic_title( $bb_post->topic_id ) ) : get_topic_title( $bb_post->topic_id ); ?></a>
 			<span class="freshness"><?php printf( __( 'By <a href="%1$s">%2$s</a> on %3$s', 'bb-mystique' ), get_user_profile_link( $bb_post->poster_id ), get_post_author(), bb_datetime_format_i18n( bb_get_post_time( array( 'format' => 'timestamp' ) ) ) ); ?></span>
 			<p><?php echo bb_show_context( $q, $bb_post->post_text ); ?></p>
 		</li>
@@ -28,7 +28,7 @@
 <?php foreach ( $relevant as $topic ) : ?>
 <?php $bb_post = bb_get_first_post( $topic ); ?>
 		<li<?php alt_class( 'relevant' ); ?>>
-			<a class="result" href="<?php post_link(); ?>"><?php echo bb_show_topic_context( $q, get_topic_title() ); ?></a>
+			<a class="result" href="<?php post_link(); ?>"><?php echo function_exists( 'bb_show_topic_context' ) ? bb_show_topic_context( $q, get_topic_title() ) : get_topic_title(); ?></a>
 			<span class="freshness"><?php printf( __( 'By <a href="%1$s">%2$s</a> on %3$s', 'bb-mystique' ), get_user_profile_link( $topic->topic_poster ), get_topic_author(), bb_datetime_format_i18n( get_topic_start_time( array( 'format' => 'timestamp' ) ) ) ); ?></span>
 			<p><?php echo bb_show_context( $q, $bb_post->post_text ); ?></p>
 		</li>
@@ -37,7 +37,7 @@
 </div>
 <?php endif; ?>
 
-<?php bb_search_pages( array( 'before' => '<div class="nav">', 'after' => '</div>' ) ); ?> 
+<?php if ( function_exists( 'bb_search_pages' ) ) bb_search_pages( array( 'before' => '<div class="nav">', 'after' => '</div>' ) ); ?>
 
 <?php if ( $q && !$recent && !$relevant ) : ?>
 <p><?php printf( __( 'Your search %s did not return any results. Here are some suggestions:', 'bb-mystique' ), '&#8220;<em>' . esc_html( $q ) . '</em>&#8221;' ); ?></p>

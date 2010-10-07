@@ -59,19 +59,6 @@
   padding-top: 8px;
 }
 
-#mystique-settings .ad-code textarea{
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-}
-
-#mystique-settings .ad-code{
-  width: 50%;
-  margin-bottom: 40px;
-  position: relative;
-  height: 100px;
-}
-
 
 #mystique-settings .subsubsub{position:relative;z-index:5;}
 #mystique-settings .subsubsub li.active a{text-decoration:none;color:#333;font-weight:bold;}

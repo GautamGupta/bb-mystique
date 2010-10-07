@@ -15,7 +15,7 @@
 	<h2 id="userlogin">
 		<span class="fn"><?php echo get_user_display_name( $user->ID ); ?></span> <small>(<span class="nickname"><?php echo get_user_name( $user->ID ); ?></span>)</small>
 	</h2>
-	
+
 	<p>
 		<?php _e( 'This is how your profile appears to a logged in member.', 'bb-mystique' ); ?>
 
@@ -54,8 +54,8 @@
 			<?php foreach ( $posts as $bb_post ) : $topic = get_topic( $bb_post->topic_id ); ?>
 			<tr<?php alt_class( 'replies' ); ?>>
 				<td><?php bb_topic_labels(); ?> <a href="<?php topic_link(); ?>"><?php topic_title(); ?></a></td>
-				<td class="date"><a href="<?php post_link(); ?>"><?php bb_post_time(); ?> <?php _e( 'ago', 'bb-mystique' ); ?></a></td>
-				<td class="date">
+				<td class="num"><a href="<?php post_link(); ?>"><?php bb_post_time(); ?> <?php _e( 'ago', 'bb-mystique' ); ?></a></td>
+				<td class="num">
 					<?php if ( bb_get_post_time( 'timestamp' ) < get_topic_time( 'timestamp' ) ) { ?>
 					<a href="<?php topic_last_post_link(); ?>"><?php topic_time(); ?> <?php _e( 'ago', 'bb-mystique' ); ?></a>
 					<?php } else { ?> - <?php } ?>
@@ -70,7 +70,7 @@
 	<?php else : ?>
 	<p><?php _e( 'No replies yet.', 'bb-mystique' ) ?></p>
 	<?php endif; endif; ?>
-	
+
 </div>
 
 <div id="user-threads" class="user-recent">
@@ -88,8 +88,8 @@
 			<?php foreach ( $topics as $topic ) : ; ?>
 			<tr<?php alt_class( 'topics' ); ?>>
 				<td><?php bb_topic_labels(); ?> <a href="<?php topic_link(); ?>"><?php topic_title(); ?></a></td>
-				<td class="date"><?php topic_start_time(); ?></td>
-				<td class="date">
+				<td class="num"><?php topic_start_time(); ?></td>
+				<td class="num">
 					<?php if ( get_topic_start_time( 'timestamp' ) < get_topic_time( 'timestamp' ) ) { ?>
 					<a href="<?php topic_last_post_link(); ?>"><?php topic_time(); ?> <?php _e( 'ago', 'bb-mystique' ); ?></a>
 					<?php } else { ?> - <?php } ?>
@@ -104,7 +104,7 @@
 	<?php else : ?>
 	<p><?php _e( 'No topics posted yet.', 'bb-mystique' ); ?></p>
 	<?php endif; endif;?>
-	
+
 </div>
 
 <?php profile_pages( array( 'before' => '<div class="nav">', 'after' => '</div>' ) ); ?>

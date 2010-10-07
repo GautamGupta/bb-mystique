@@ -31,19 +31,19 @@ function bb_get_tabindex( $args = false ) {
 		'set_to_value'	=> false	/* (false or int) If an integer is passed, $bb_tabindex is set to it */
 	);
 	$args = wp_parse_args( $args, $defaults );
-	
+
 	global $bb_tabindex;
 	if ( !$bb_tabindex )
 		$bb_tabindex = '1';
-	
+
 	$ti = $args['val'] != false ? $args['val'] : $bb_tabindex;
 	$r = ' tabindex="' . $ti . '"';
-	
+
 	if ( $args['set_to_value'] != false )
 		$bb_tabindex = (int) $args['set_to_value'];
 	elseif ( !$args['val'] )
 		$bb_tabindex++;
-	
+
 	return $r;
 }
 endif;
@@ -74,16 +74,16 @@ function bb_get_auto_crumbs( $args ) {
 		'span_current'	=> false,	/* The class for current page, can be false if you do not want any class (not for forum) */
 		'current'	=> false,	/* Override the 'current' text (not for forum) */
 		'force'		=> false,	/* Some pages like 404 have to force a to generate crumbs, this might also be used by plugins */
-		'separator'	=> ' &raquo; '
+		'separator'	=> ' &rsaquo; '
 	);
 	$args = wp_parse_args( $args, $defaults );
-	
+
 	$r		= '';
 	$crumbs		= array( bb_get_uri() => bb_get_option( 'name' )  );
 	$location	= !$args['force'] ? bb_get_location() : $args['force'];
 	$class		= $args['class'] ? ' class="' . $args['class'] . '"' : '';
 	$id		= $args['id'] ? ' id="' . $args['id'] . '"' : '';
-	
+
 	switch ( $location ) {
 		case 'front-page': /* For new topic */
 			global $forums;
@@ -144,7 +144,7 @@ function bb_get_auto_crumbs( $args ) {
 			$crumbs = apply_filters( 'bb_get_auto_crumbs_location', $crumbs, $location, $args );
 			break;
 	}
-	
+
 	if ( count( $crumbs ) > 1 ) {
 		$r .= '<div ' . $class . $id . '">';
 		foreach ( $crumbs as $url => $text ) {
@@ -168,7 +168,7 @@ function bb_get_auto_crumbs( $args ) {
 		}
 		$r .= '</div>';
 	}
-	
+
 	return apply_filters( 'bb_get_auto_crumbs', $r, $args );
 }
 endif;
@@ -177,28 +177,28 @@ endif;
  * Displays feed links for current page - Normally 1 or 2
  */
 function bb_mystique_feed_box() {
-	
+
 	$feeds = array();
-	
+
 	switch ( bb_get_location() ) {
 		case 'profile-page':
 			if ( $tab = isset( $_GET['tab'] ) ? $_GET['tab'] : bb_get_path( 2 ) )
 				if ( $tab != 'favorites' )
 					break;
-			
+
 			$feeds[] = array(
 				'title' => __( 'these favorites', 'bb-mystique' ),
 				'href'  => get_favorites_rss_link( 0, BB_URI_CONTEXT_LINK_ALTERNATE_HREF + BB_URI_CONTEXT_BB_FEED )
 			);
 			break;
-		
+
 		case 'topic-page':
 			$feeds[] = array(
 				'title' => __( 'posts in this topic', 'bb-mystique' ),
 				'href'  => get_topic_rss_link( 0, BB_URI_CONTEXT_LINK_ALTERNATE_HREF + BB_URI_CONTEXT_BB_FEED )
 			);
 			break;
-		
+
 		case 'tag-page':
 			if ( bb_is_tag() ) {
 				$feeds[] = array(
@@ -211,7 +211,7 @@ function bb_mystique_feed_box() {
 				);
 			}
 			break;
-		
+
 		case 'forum-page':
 			$feeds[] = array(
 				'title' => sprintf( __( 'recent posts in <em>%s</em>', 'bb-mystique' ), get_forum_name() ),
@@ -222,7 +222,7 @@ function bb_mystique_feed_box() {
 				'href'  => bb_get_forum_topics_rss_link( 0, BB_URI_CONTEXT_LINK_ALTERNATE_HREF + BB_URI_CONTEXT_BB_FEED )
 			);
 			break;
-		
+
 		case 'front-page':
 			$feeds[] = array(
 				'title' => __( 'all recent posts', 'bb-mystique' ),
@@ -233,7 +233,7 @@ function bb_mystique_feed_box() {
 				'href'  => bb_get_topics_rss_link( BB_URI_CONTEXT_LINK_ALTERNATE_HREF + BB_URI_CONTEXT_BB_FEED )
 			);
 			break;
-		
+
 		case 'view-page':
 			global $bb_views, $view;
 			if ( $bb_views[$view]['feed'] ) {
@@ -244,7 +244,7 @@ function bb_mystique_feed_box() {
 			}
 			break;
 	}
-	
+
 	if ( count( $feeds ) ) {
 		?>
 		<p class="rss-link">
@@ -255,7 +255,7 @@ function bb_mystique_feed_box() {
 		</p>
 		<?php
 	}
-	
+
 }
 
 if ( !function_exists( 'bb_kakumei_topics_table' ) ) :
@@ -281,9 +281,9 @@ function bb_kakumei_topics_table( $type = '' ) {
 		$super_stickies = $stickies;
 	}
 	global $topics, $super_stickies, $user;
-	
+
 	if ( ( count( $topics ) + count( $super_stickies ) ) == 0 ) return;
-	
+
 	if ( !$type ) {
 		switch ( bb_get_location() ) {
 			case 'forum-page':
@@ -309,11 +309,11 @@ function bb_kakumei_topics_table( $type = '' ) {
 				break;
 		}
 	}
-	
+
 	do_action( 'bb_topics_above_table_before_heading', $type, $topics, $super_stickies );
 	$heading = $type == 'front' ? __( 'Latest Discussions', 'bb-mystique' ) : __( 'Topics', 'bb-mystique' );
 	?>
-	
+
 	<h2><?php echo $heading; ?><span class="new-topic"> &#8212; <?php bb_new_topic_link( array( 'text' => __( 'start new', 'bb-mystique' ) ) ); ?></span></h2>
 	<?php do_action( 'bb_topics_above_table', $type, $topics, $super_stickies ); ?>
 	<table id="latest" cellspacing="0">
@@ -357,9 +357,9 @@ function bb_kakumei_topics_table( $type = '' ) {
 		endforeach;
 		do_action( 'bb_topics_after_stickies', $type, $topics, $super_stickies );
 	endif; // $super_stickies
-	
+
 	do_action( 'bb_topics_after_stickies_before_topics', $type, $topics, $super_stickies );
-	
+
 	if ( $topics ) :
 		do_action( 'bb_topics_before_topics', $type, $topics, $super_stickies );
 		foreach ( $topics as $topicc ) :
@@ -388,7 +388,7 @@ function bb_kakumei_topics_table( $type = '' ) {
 	</table>
 	<?php
 	do_action( 'bb_topics_after_topics', $type, $topics, $super_stickies );
-	
+
 	switch ( $type ) {
 		case 'tag':
 			tag_pages( array( 'before' => '<div class="nav">', 'after' => '</div>' ) );
@@ -407,42 +407,75 @@ function bb_kakumei_topics_table( $type = '' ) {
 			bb_latest_topics_pages( array( 'before' => '<div class="nav">', 'after' => '</div>' ) );
 			break;
 	}
-	
+
 	bb_mystique_feed_box();
-	
+
 	do_action( 'bb_topics_after_topics_after_pages', $type, $topics, $super_stickies );
 }
 endif;
 
-/*
-function mystique_logo() {
-	$options = get_option( 'bb-mystique' );
-	$size = $options['logo_size'];
-	if ( $size ) $size = 'width="' .substr( $size, 0, strpos( $size, "x") ).'" height="' .substr( $size, strpos( $size, 'x' )+1).'"';
-	
-	$sitename = bb_option( 'name' );
-	$siteurl = bb_get_uri();
-	
-	$tag = ( is_home() || is_front_page() ) ? 'h1' : 'div';
-	
-	$output = '<' . $tag.' id="logo">';
-	
-	if ( $options['logo']) // logo image?
-		$output .= '<a href="' . $siteurl.'"><img src="' . $options['logo'].'" title="' . $sitename.'" ' . $size.' alt="' . $sitename.'" /></a>';
-	else
-		$output .= '<a href="' . $siteurl.'">' . $sitename.'</a>';
-	$output .= '</' . $tag.'>';
-	echo apply_filters( 'mystique_logo', $output );
-}
-*/
+/**
+ * Display the logo if present, else display the forum name
+ */
+function bb_mystique_logo() {
+	$logo = bb_get_mystique_option( 'logo' );
+	$size = bb_get_mystique_option( 'logo_size' );
+	if ( $size ) $size = 'width="' . substr( $size, 0, strpos( $size, "x" ) ) . '" height="' . substr( $size, strpos( $size, 'x' ) + 1 ) . '"';
 
-function mystique_objectToArray( $object ) {
-   if ( !is_object( $object ) && !is_array( $object ) ) return $object;
-   if ( is_object( $object ) ) $object = get_object_vars( $object );
-   return array_map( 'mystique_objectToArray', $object );
+	$sitename = bb_get_option( 'name' );
+	$siteurl = bb_get_uri();
+	$tag = bb_is_front() ? 'h1' : 'div';
+
+	$output = '<' . $tag.' id="logo">';
+
+	if ( $logo ) // logo image?
+		$output .= '<a href="' . $siteurl . '"><img src="' . $logo . '" title="' . $sitename . '" ' . $size . ' alt="' . $sitename . '" /></a>';
+	else
+		$output .= '<a href="' . $siteurl . '">' . $sitename . '</a>';
+
+	$output .= '</' . $tag.'>';
+
+	echo apply_filters( 'bb_mystique_logo', $output );
 }
+
+if ( !function_exists( 'mystique_objectToArray' ) ) :
+function mystique_objectToArray( $object ) {
+	if ( !is_object( $object ) && !is_array( $object ) ) return $object;
+	if ( is_object( $object ) ) $object = get_object_vars( $object );
+	return array_map( 'mystique_objectToArray', $object );
+}
+endif;
+
+/**
+ * Display tweets of the user
+ */
+function bb_mystique_twitter_widget() {
+	$twituser = bb_get_mystique_option( 'twitter_id' );
+	$twitcount = bb_get_mystique_option( 'twitter_count' );
+	$id = 'twitterwidget-3';
+	?>
+<script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+getTwitters('tweet', {
+	id: '<?php echo $twituser; ?>',
+	count: <?php echo $twitcount; ?>,
+	enableLinks: true,
+	ignoreReplies: true,
+	clearContents: true,
+	template: '"%text%" <a href="http://twitter.com/%user_screen_name%/statuses/%id%/">%time%</a>'
+});
+</script>
+<div id="tweet">
+	<div class="loading"><?php _e( 'Loading tweets...', 'bb-mystique' ); ?></div>
+</div>
+<?php
+	if ( $twituser ): ?>
+<a class="followMe" href="http://twitter.com/<?php echo $twituser; ?>"><span><?php _e( 'Follow me on Twitter!', 'bb-mystique' ); ?></span></a>
+	<?php endif;
+}
+
 /*
-function mystique_shareThis() {
+function bb_mystique_shareThis() {
 	$bb_post = bb_get_first_post();
 	$content = $bb_post->post_content;
 ?>
@@ -465,17 +498,3 @@ function mystique_shareThis() {
 <?php
 }
 */
-function mystique_highlight_search_query() {
-	$referer = urldecode( $_SERVER['HTTP_REFERER'] );
-	
-	if ( preg_match( '@^http://(.*)?\.?(google|yahoo|lycos).*@i', $referer ) ) $query = preg_replace( '/^.*( &q|query|p)=([^&]+)&?.*$/i','$2', $referer );
-	else $query = attribute_escape( get_search_query() );
-
-	if ( strlen( $query ) > 0 ) : ?>
-	var highlight_search_query = "<?php echo $query; ?>";
-	jQuery(".hentry").each(function() {
-		jQuery(this).highlight(highlight_search_query, 1, "highlight");
-	});
-	<?php
-	endif;
-}
